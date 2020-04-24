@@ -1,6 +1,6 @@
 package com.digix.desafio.dto;
 
-import com.digix.desafio.model.Pessoa;
+import com.digix.desafio.model.Familia;
 import com.digix.desafio.model.Renda;
 import java.util.List;
 
@@ -12,9 +12,13 @@ public class FamiliaDTO {
 
     private String id;
     private Integer status;
-    private List<Pessoa> pessoas;
+    private List<PessoaDTO> pessoas;
     private List<Renda> rendas;
-    
+
+    public FamiliaDTO(Familia familia) {
+        this.id = familia.getId();
+        this.status = familia.getStatusId().getId();
+    }
 
     public String getId() {
         return id;
@@ -32,11 +36,11 @@ public class FamiliaDTO {
         this.status = status;
     }
 
-    public List<Pessoa> getPessoas() {
+    public List<PessoaDTO> getPessoas() {
         return pessoas;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
+    public void setPessoas(List<PessoaDTO> pessoas) {
         this.pessoas = pessoas;
     }
 
@@ -47,7 +51,5 @@ public class FamiliaDTO {
     public void setRendas(List<Renda> rendas) {
         this.rendas = rendas;
     }
-    
-    
-    
+
 }
