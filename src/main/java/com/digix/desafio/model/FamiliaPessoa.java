@@ -12,19 +12,20 @@ import javax.persistence.Table;
  * @author david
  */
 @Entity
-@Table(name = "renda")
-public class Renda {
-    
+@Table(name = "familia_pessoa")
+public class FamiliaPessoa {
+
     @Id
     @Column(name = "id")
     private String id;
-    
-    @Column(name = "renda")
-    private Integer renda;
-    
+
     @JoinColumn(name = "pessoa_id", referencedColumnName = "id")
     @ManyToOne
     private Pessoa pessoaId;
+
+    @JoinColumn(name = "familia_id", referencedColumnName = "id")
+    @ManyToOne
+    private Familia familiaId;
 
     public String getId() {
         return id;
@@ -32,15 +33,7 @@ public class Renda {
 
     public void setId(String id) {
         this.id = id;
-    }
-    
-    public Integer getRenda() {
-        return renda;
-    }
-
-    public void setRenda(Integer renda) {
-        this.renda = renda;
-    }
+    } 
 
     public Pessoa getPessoaId() {
         return pessoaId;
@@ -48,6 +41,14 @@ public class Renda {
 
     public void setPessoaId(Pessoa pessoaId) {
         this.pessoaId = pessoaId;
+    }
+
+    public Familia getFamiliaId() {
+        return familiaId;
+    }
+
+    public void setFamiliaId(Familia familiaId) {
+        this.familiaId = familiaId;
     }
     
 }

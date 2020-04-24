@@ -15,20 +15,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
-       
+
     @Id
     @Column(name = "id")
     private String id;
-    
+
     @Column(name = "nome")
     private String nome;
-    
+
     @Column(name = "data_nascimento")
     private Date dataDeNascimento;
-    
+
     @JoinColumn(name = "tipo_id", referencedColumnName = "id")
     @ManyToOne
-    private String tipoId;
+    private Tipo tipoId;
 
     public String getId() {
         return id;
@@ -54,12 +54,12 @@ public class Pessoa {
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public String getTipoId() {
+    public Tipo getTipoId() {
         return tipoId;
     }
 
-    public void setTipoId(String tipoId) {
+    public void setTipoId(Tipo tipoId) {
         this.tipoId = tipoId;
-    }  
-    
+    }
+
 }

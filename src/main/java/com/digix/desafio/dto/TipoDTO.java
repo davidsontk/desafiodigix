@@ -6,14 +6,14 @@ package com.digix.desafio.dto;
  */
 public class TipoDTO {
 
-    private String id;
+    private Integer id;
     private String descricao;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

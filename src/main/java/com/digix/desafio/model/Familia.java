@@ -1,6 +1,5 @@
 package com.digix.desafio.model;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +12,7 @@ import javax.persistence.Table;
  * @author david
  */
 @Entity
-@Table(name = "pessoa")
+@Table(name = "familia")
 public class Familia {
 
     @Id
@@ -23,14 +22,6 @@ public class Familia {
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     @ManyToOne
     private Status statusId;
-
-    @JoinColumn(name = "pessoas_id", referencedColumnName = "id")
-    @ManyToOne
-    private List<Pessoa> pessoasId;
-    
-    @JoinColumn(name = "status_id", referencedColumnName = "id")
-    @ManyToOne
-    private List<Renda> rendasId;
 
     public String getId() {
         return id;
@@ -46,22 +37,6 @@ public class Familia {
 
     public void setStatusId(Status statusId) {
         this.statusId = statusId;
-    }
-
-    public List<Pessoa> getPessoasId() {
-        return pessoasId;
-    }
-
-    public void setPessoasId(List<Pessoa> pessoasId) {
-        this.pessoasId = pessoasId;
-    }
-
-    public List<Renda> getRendasId() {
-        return rendasId;
-    }
-
-    public void setRendasId(List<Renda> rendasId) {
-        this.rendasId = rendasId;
     }
     
 }
