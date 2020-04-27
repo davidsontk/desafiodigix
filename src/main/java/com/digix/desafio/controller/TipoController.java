@@ -45,7 +45,6 @@ public class TipoController {
     @GetMapping
     public List<Tipo> buscarTodosTipos() {
         try {
-
             return tipoRepository.findAll();
 
         } catch (Exception e) {

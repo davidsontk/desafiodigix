@@ -1,5 +1,6 @@
 package com.digix.desafio.dto;
 
+import com.digix.desafio.model.Pessoa;
 import java.util.Date;
 
 /**
@@ -12,6 +13,13 @@ public class PessoaDTO {
     private String nome;
     private Date dataDeNascimento;
     private int idade;
+
+    public PessoaDTO(Pessoa pessoa, int idade) {
+        this.id = pessoa.getId();
+        this.nome = pessoa.getNome();
+        this.dataDeNascimento = pessoa.getDataDeNascimento();
+        this.idade = idade;
+    }
 
     public String getId() {
         return id;
