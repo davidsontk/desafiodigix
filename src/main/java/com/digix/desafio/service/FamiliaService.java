@@ -2,6 +2,7 @@ package com.digix.desafio.service;
 
 import com.digix.desafio.dto.FamiliaDTO;
 import com.digix.desafio.dto.PessoaDTO;
+import com.digix.desafio.dto.RendaDTO;
 import com.digix.desafio.model.Familia;
 import com.digix.desafio.model.Renda;
 import com.digix.desafio.model.Status;
@@ -62,7 +63,7 @@ public class FamiliaService {
     private List<FamiliaDTO> buscarFamiliasAptas(List<FamiliaDTO> listaFamiliaDTO) {
         for (FamiliaDTO familiaDTO : listaFamiliaDTO) {
             List<PessoaDTO> pessoasDTO = pessoaService.buscarPessoasPorFamiliaId(familiaDTO.getId());
-            List<Renda> listaRenda = new ArrayList<>();
+            List<RendaDTO> listaRenda = new ArrayList<>();
             familiaDTO.setPessoas(pessoasDTO);
             for (PessoaDTO pessoa : pessoasDTO) {
                 listaRenda.add(rendaService.buscarRendaPorPessoa(pessoa.getId()));

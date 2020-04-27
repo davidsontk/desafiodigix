@@ -13,8 +13,9 @@ public class FamiliaDTO {
     private String id;
     private Integer status;
     private List<PessoaDTO> pessoas;
-    private List<Renda> rendas;
-
+    private List<RendaDTO> rendas;
+    private int pontos;
+    
     public FamiliaDTO(Familia familia) {
         this.id = familia.getId();
         this.status = familia.getStatusId().getId();
@@ -44,12 +45,20 @@ public class FamiliaDTO {
         this.pessoas = pessoas;
     }
 
-    public List<Renda> getRendas() {
+    public List<RendaDTO> getRendas() {
         return rendas;
     }
 
-    public void setRendas(List<Renda> rendas) {
+    public void setRendas(List<RendaDTO> rendas) {
         this.rendas = rendas;
     }
 
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+    
 }

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
-    @Query("new com.digix.desafio.dto.PessoaDTO(p, (date(now()) - date(p.dataDeNascimento))) FROM Pessoa p "
+    @Query("new com.digix.desafio.dto.PessoaDTO(p, (date(now()) - date(to_date(p.dataDeNascimento)))) FROM Pessoa p "
             + "JOIN FamiliaPessoa fp ON fp.pessoaId.id = p.id "
             + "WHERE fp.familiaId.id = ?1 ")
     List<PessoaDTO> findByFamiliaId(String familiaId);

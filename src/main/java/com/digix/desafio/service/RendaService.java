@@ -1,8 +1,7 @@
 package com.digix.desafio.service;
 
-import com.digix.desafio.model.Renda;
+import com.digix.desafio.dto.RendaDTO;
 import com.digix.desafio.repository.RendaRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -14,7 +13,7 @@ public class RendaService {
     @Autowired
     private RendaRepository rendaRepository;
 
-    public Renda buscarRendaPorPessoa(String pessoaId) {
+    public RendaDTO buscarRendaPorPessoa(String pessoaId) {
         try {
             return rendaRepository.findByPessoaId(pessoaId);
         } catch (Exception e) {

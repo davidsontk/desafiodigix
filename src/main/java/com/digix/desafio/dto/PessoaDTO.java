@@ -12,12 +12,14 @@ public class PessoaDTO {
     private String id;
     private String nome;
     private Date dataDeNascimento;
+    private String tipo;
     private int idade;
 
     public PessoaDTO(Pessoa pessoa, int idade) {
         this.id = pessoa.getId();
         this.nome = pessoa.getNome();
         this.dataDeNascimento = pessoa.getDataDeNascimento();
+        this.tipo = pessoa.getTipoId().getDescricao();
         this.idade = idade;
     }
 
@@ -43,6 +45,14 @@ public class PessoaDTO {
 
     public void setDataDeNascimento(Date dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public int getIdade() {

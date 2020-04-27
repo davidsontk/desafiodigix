@@ -1,5 +1,6 @@
 package com.digix.desafio.repository;
 
+import com.digix.desafio.dto.RendaDTO;
 import com.digix.desafio.model.Renda;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface RendaRepository extends JpaRepository<Renda, Long>{
     
-    @Query("SELECT r FROM Renda r "
+    @Query("SELECT new com.digix.desafio.dto.RendaDTO(r) FROM Renda r "
             + "WHERE r.pessoaId.id = ?1")
-    Renda findByPessoaId(String pessoaId);
+    RendaDTO findByPessoaId(String pessoaId);
 }
