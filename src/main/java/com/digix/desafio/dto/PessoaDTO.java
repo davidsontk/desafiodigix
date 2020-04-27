@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class PessoaDTO {
 
-    private String id;
+    private Integer id;
     private String nome;
     private Date dataDeNascimento;
     private String tipo;
@@ -23,11 +23,11 @@ public class PessoaDTO {
         this.idade = idade;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

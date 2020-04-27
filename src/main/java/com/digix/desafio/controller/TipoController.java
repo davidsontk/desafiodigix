@@ -3,6 +3,7 @@ package com.digix.desafio.controller;
 import com.digix.desafio.dto.TipoDTO;
 import com.digix.desafio.model.Tipo;
 import com.digix.desafio.repository.TipoRepository;
+import com.digix.desafio.service.FamiliaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class TipoController {
 
     @Autowired
     private TipoRepository tipoRepository;
+    
+    @Autowired
+    private FamiliaService familiaService;
 
     @PostMapping
     public HttpStatus salvarTipo(@RequestBody TipoDTO tipoDTO) {
@@ -32,8 +36,7 @@ public class TipoController {
             Tipo tipo = new Tipo();
             tipo.setDescricao(tipoDTO.getDescricao());
             tipo.setId(tipoDTO.getId());
-            tipoRepository.save(tipo);
-
+//            tipoRepository.save(tipo);
             return HttpStatus.OK;
 
         } catch (Exception e) {

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class FamiliaDTO {
 
-    private String id;
+    private Integer id;
     private Integer status;
     private List<PessoaDTO> pessoas;
     private List<RendaDTO> rendas;
@@ -21,11 +21,11 @@ public class FamiliaDTO {
         this.status = familia.getStatusId().getId();
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

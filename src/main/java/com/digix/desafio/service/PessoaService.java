@@ -18,10 +18,10 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public List<PessoaDTO> buscarPessoasPorFamiliaId(String familiaId) {
+    public List<PessoaDTO> buscarPessoasPorFamiliaId(Integer familiaId) {
         try {
             
-            return pessoaRepository.findByFamiliaId(familiaId);
+            return pessoaRepository.buscarPessoasPorFamiliaId(familiaId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

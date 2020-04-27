@@ -8,7 +8,7 @@ import com.digix.desafio.model.Renda;
  */
 public class RendaDTO {
 
-    private String pessoaId;
+    private Integer pessoaId;
     private int renda;
 
     public RendaDTO(Renda renda) {
@@ -16,11 +16,11 @@ public class RendaDTO {
         this.renda = renda.getRenda();
     }
 
-    public String getPessoaId() {
+    public Integer getPessoaId() {
         return pessoaId;
     }
 
-    public void setPessoaId(String pessoaId) {
+    public void setPessoaId(Integer pessoaId) {
         this.pessoaId = pessoaId;
     }
 

@@ -6,8 +6,8 @@ package com.digix.desafio.utils;
  */
 public class RendaTotal {
 
-    public static final int ATE900 = 900;
-    public static final int ATE1500 = 1500;
-    public static final int ATE2000 = 2000;
+    public static final int ATE_900 = 900;
+    public static final int ATE_1500 = 1500;
+    public static final int ATE_2000 = 2000;
 
 }

@@ -5,11 +5,13 @@ import com.digix.desafio.model.Familia;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author david
  */
+@Repository
 public interface FamiliaRepository extends JpaRepository<Familia, Long> {
 
     @Query("SELECT new com.digix.desafio.dto.FamiliaDTO(fm) FROM Familia fm "

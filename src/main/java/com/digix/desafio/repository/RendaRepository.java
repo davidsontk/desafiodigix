@@ -13,5 +13,5 @@ public interface RendaRepository extends JpaRepository<Renda, Long>{
     
     @Query("SELECT new com.digix.desafio.dto.RendaDTO(r) FROM Renda r "
             + "WHERE r.pessoaId.id = ?1")
-    RendaDTO findByPessoaId(String pessoaId);
+    RendaDTO findByPessoaId(Integer pessoaId);
 }

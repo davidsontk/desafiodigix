@@ -22,6 +22,7 @@ public class FamiliaController {
     @GetMapping
     public List<FamiliaDTO> buscarFamiliasAptas() {
 
-        return familiaService.buscarFamiliasAptas();
+        return null;
+        //return familiaService.buscarFamiliasAptas();
     }
 }
