@@ -1,21 +1,25 @@
 package com.digix.desafio.dto;
 
 import com.digix.desafio.model.Familia;
-import com.digix.desafio.model.Renda;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  *
  * @author david
  */
-public class FamiliaDTO {
+public class FamiliaDTO implements Comparator<FamiliaDTO> {
 
     private Integer id;
     private Integer status;
     private List<PessoaDTO> pessoas;
     private List<RendaDTO> rendas;
-    private int pontos;
-    
+    private Integer pontos;
+
+    public FamiliaDTO() {
+
+    }
+
     public FamiliaDTO(Familia familia) {
         this.id = familia.getId();
         this.status = familia.getStatusId().getId();
@@ -53,12 +57,17 @@ public class FamiliaDTO {
         this.rendas = rendas;
     }
 
-    public int getPontos() {
+    public Integer getPontos() {
         return pontos;
     }
 
-    public void setPontos(int pontos) {
+    public void setPontos(Integer pontos) {
         this.pontos = pontos;
     }
-    
+
+    @Override
+    public int compare(FamiliaDTO o1, FamiliaDTO o2) {
+        return o1.getPontos().compareTo(o2.getPontos());
+    }
+
 }

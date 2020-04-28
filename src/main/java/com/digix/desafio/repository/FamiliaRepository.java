@@ -17,5 +17,7 @@ public interface FamiliaRepository extends JpaRepository<Familia, Long> {
     @Query("SELECT new com.digix.desafio.dto.FamiliaDTO(fm) FROM Familia fm "
             + " WHERE fm.statusId.id = ?1 ")
     List<FamiliaDTO> findByStatusId(Integer statusId);
+    
+    Familia findById(Integer id);
 
 }

@@ -1,20 +1,25 @@
 package com.digix.desafio.service;
 
+import com.digix.desafio.StarterApplication;
 import com.digix.desafio.dto.FamiliaDTO;
 import com.digix.desafio.dto.PessoaDTO;
 import com.digix.desafio.dto.RendaDTO;
-import com.digix.desafio.model.Familia;
-import com.digix.desafio.model.Renda;
+import com.digix.desafio.model.FamiliaContemplada;
 import com.digix.desafio.model.Status;
-import com.digix.desafio.model.Tipo;
+import com.digix.desafio.repository.FamiliaContempladaRepository;
 import com.digix.desafio.repository.FamiliaPessoaRepository;
 import com.digix.desafio.repository.FamiliaRepository;
+import com.digix.desafio.repository.PessoaRepository;
 import com.digix.desafio.repository.StatusRepository;
 import com.digix.desafio.repository.TipoRepository;
 import com.digix.desafio.utils.StatusEnum;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**
@@ -45,16 +50,18 @@ public class FamiliaService {
     @Autowired
     private CriterioService criterioService;
 
+    @Autowired
+    private FamiliaContempladaRepository familiaContempladaRepository;
+
     public List<FamiliaDTO> buscarFamiliasAptas() {
 
         try {
             Status status = statusRepository.findByDescricao(StatusEnum.CADASTRO_VALIDO);
             List<FamiliaDTO> listaFamiliaDTO = familiaRepository.findByStatusId(status.getId()); // buscando familias
-            listaFamiliaDTO = this.buscarFamiliasAptas(listaFamiliaDTO); // preenchendo pessoas e rendas das familias
 
-            // começar logica do codigo
-            // fazer um service de criterios e jogar a logica lá.
-            // verificar a necessidade de criar uma data_de_comtemplado na tabela familia
+            // preenchendo pessoas e rendas das familias e pontuacao e ordenação 
+            listaFamiliaDTO = this.buscarFamiliasAptas(listaFamiliaDTO);
+
             return listaFamiliaDTO;
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,15 +76,43 @@ public class FamiliaService {
                 List<PessoaDTO> pessoasDTO = pessoaService.buscarPessoasPorFamiliaId(familiaDTO.getId());
                 List<RendaDTO> listaRenda = new ArrayList<>();
                 familiaDTO.setPessoas(pessoasDTO);
+
                 for (PessoaDTO pessoa : pessoasDTO) {
                     listaRenda.add(rendaService.buscarRendaPorPessoa(pessoa.getId()));
                 }
+
                 familiaDTO.setRendas(listaRenda);
 
+                Integer criteriosAtendidos = 0;
+                Integer pontos = familiaDTO.getPontos();
+                // verificando criterio de renda total
                 criterioService.verificarCriterioRendaTotalFamilia(familiaDTO);
+
+                if (pontos.equals(familiaDTO.getPontos())) {
+                    criteriosAtendidos++;
+                    pontos = familiaDTO.getPontos();
+                }
+                //verificando criterio de pretendente
                 criterioService.verificarCriterioPretendentePorFamilia(familiaDTO);
+
+                if (pontos.equals(familiaDTO.getPontos())) {
+                    criteriosAtendidos++;
+                    pontos = familiaDTO.getPontos();
+                }
+                //verificando criterio de dependente
                 criterioService.verificarCriterioDependentePorFamilia(familiaDTO);
+
+                if (pontos.equals(familiaDTO.getPontos())) {
+                    criteriosAtendidos++;
+                    pontos = familiaDTO.getPontos();
+                }
+
+                // salvando na tabela de familias contempladas
+                this.salvarFamiliaContemplada(criteriosAtendidos, familiaDTO.getId(), familiaDTO.getPontos());
             }
+
+            Collections.sort(listaFamiliaDTO, new FamiliaDTO());
+            // ordenando familia
 
             return listaFamiliaDTO;
 
@@ -87,6 +122,18 @@ public class FamiliaService {
         }
     }
 
-    
+    private void salvarFamiliaContemplada(Integer criteriosAtendidos, Integer familiaId, Integer pontuacaoTotal) {
+        try {
+            FamiliaContemplada familiaContemplada = new FamiliaContemplada();
+            familiaContemplada.setCriterioAtendido(criteriosAtendidos);
+            familiaContemplada.setDataContemplacao(new Date());
+            familiaContemplada.setFamiliaId(familiaRepository.findById(familiaId));
+            familiaContemplada.setPontuacaoTotal(pontuacaoTotal);
+
+            familiaContempladaRepository.save(familiaContemplada);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

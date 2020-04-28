@@ -1,5 +1,6 @@
 package com.digix.desafio.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "familia_pessoa")
-public class FamiliaPessoa {
+public class FamiliaPessoa implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -50,5 +51,5 @@ public class FamiliaPessoa {
     public void setFamiliaId(Familia familiaId) {
         this.familiaId = familiaId;
     }
-    
+
 }

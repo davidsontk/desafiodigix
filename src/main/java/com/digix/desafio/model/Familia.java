@@ -1,5 +1,6 @@
 package com.digix.desafio.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "familia")
-public class Familia {
+public class Familia implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -22,7 +23,7 @@ public class Familia {
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     @ManyToOne
     private Status statusId;
-
+    
     public Integer getId() {
         return id;
     }
@@ -38,5 +39,5 @@ public class Familia {
     public void setStatusId(Status statusId) {
         this.statusId = statusId;
     }
-    
+
 }

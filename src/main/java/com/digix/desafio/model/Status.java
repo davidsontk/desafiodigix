@@ -1,5 +1,6 @@
 package com.digix.desafio.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "status")
-public class Status {
+public class Status implements Serializable {
 
     @Id
     @Column(name = "id")
