@@ -1,7 +1,7 @@
 package com.digix.desafio.dto;
 
 import com.digix.desafio.model.Pessoa;
-import java.util.Date;
+import com.digix.desafio.utils.UtilitariosHelper;
 
 /**
  *
@@ -11,15 +11,20 @@ public class PessoaDTO {
 
     private Integer id;
     private String nome;
-    private Date dataDeNascimento;
+    private String dataDeNascimento;
     private String tipo;
-    private int idade;
+    private Integer idade;
+
+    public PessoaDTO() {
+
+    }
 
     public PessoaDTO(Pessoa pessoa) {
         this.id = pessoa.getId();
         this.nome = pessoa.getNome();
-        this.dataDeNascimento = pessoa.getDataDeNascimento();
+        this.dataDeNascimento = UtilitariosHelper.formatarData(pessoa.getDataDeNascimento());
         this.tipo = pessoa.getTipoId().getDescricao();
+        this.idade = UtilitariosHelper.calcularIdade(pessoa.getDataDeNascimento());
     }
 
     public Integer getId() {
@@ -38,11 +43,11 @@ public class PessoaDTO {
         this.nome = nome;
     }
 
-    public Date getDataDeNascimento() {
+    public String getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(Date dataDeNascimento) {
+    public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 
@@ -54,11 +59,11 @@ public class PessoaDTO {
         this.tipo = tipo;
     }
 
-    public int getIdade() {
+    public Integer getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(Integer idade) {
         this.idade = idade;
     }
 

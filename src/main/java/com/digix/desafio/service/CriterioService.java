@@ -82,21 +82,26 @@ public class CriterioService {
     public FamiliaDTO verificarCriterioDependentePorFamilia(FamiliaDTO familiaDTO) {
         try {
             List<PessoaDTO> listaPessoas = familiaDTO.getPessoas();
-            int dependentesMaioresDe18Anos = 0;
+            int dependentesMenoresDe18Anos = 0;
             for (PessoaDTO pessoa : listaPessoas) {
                 if (pessoa.getTipo().equals(Dependente.DEPENDENTE)) {
-                    if (pessoa.getIdade() > 18) {
-                        dependentesMaioresDe18Anos++;
+                    if (pessoa.getIdade() <= 18) {
+                        dependentesMenoresDe18Anos++;
                     }
                 }
             }
 
-            if (dependentesMaioresDe18Anos <= Dependente.ATE_2_DEPENDENTES) {
+            if (dependentesMenoresDe18Anos == 0) {
+                //caso n tenha dependentes
+                return familiaDTO;
+            }
+
+            if (dependentesMenoresDe18Anos <= Dependente.ATE_2_DEPENDENTES) {
                 familiaDTO.setPontos(familiaDTO.getPontos() + Ponto.PONTO_2);
                 return familiaDTO;
             }
 
-            if (dependentesMaioresDe18Anos >= Dependente.DE_3_DEPENDENTES) {
+            if (dependentesMenoresDe18Anos >= Dependente.DE_3_DEPENDENTES) {
                 familiaDTO.setPontos(familiaDTO.getPontos() + Ponto.PONTO_3);
                 return familiaDTO;
             }

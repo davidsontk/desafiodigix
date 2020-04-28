@@ -1,6 +1,7 @@
 package com.digix.desafio.service;
 
 import com.digix.desafio.StarterApplication;
+import com.digix.desafio.dto.FamiliaContempladaDTO;
 import com.digix.desafio.dto.FamiliaDTO;
 import com.digix.desafio.dto.PessoaDTO;
 import com.digix.desafio.dto.RendaDTO;
@@ -18,8 +19,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -88,21 +97,21 @@ public class FamiliaService {
                 // verificando criterio de renda total
                 criterioService.verificarCriterioRendaTotalFamilia(familiaDTO);
 
-                if (pontos.equals(familiaDTO.getPontos())) {
+                if (!pontos.equals(familiaDTO.getPontos())) {
                     criteriosAtendidos++;
                     pontos = familiaDTO.getPontos();
                 }
                 //verificando criterio de pretendente
                 criterioService.verificarCriterioPretendentePorFamilia(familiaDTO);
 
-                if (pontos.equals(familiaDTO.getPontos())) {
+                if (!pontos.equals(familiaDTO.getPontos())) {
                     criteriosAtendidos++;
                     pontos = familiaDTO.getPontos();
                 }
                 //verificando criterio de dependente
                 criterioService.verificarCriterioDependentePorFamilia(familiaDTO);
 
-                if (pontos.equals(familiaDTO.getPontos())) {
+                if (!pontos.equals(familiaDTO.getPontos())) {
                     criteriosAtendidos++;
                     pontos = familiaDTO.getPontos();
                 }
@@ -125,6 +134,7 @@ public class FamiliaService {
     private void salvarFamiliaContemplada(Integer criteriosAtendidos, Integer familiaId, Integer pontuacaoTotal) {
         try {
             FamiliaContemplada familiaContemplada = new FamiliaContemplada();
+            familiaContemplada.setId(familiaId);
             familiaContemplada.setCriterioAtendido(criteriosAtendidos);
             familiaContemplada.setDataContemplacao(new Date());
             familiaContemplada.setFamiliaId(familiaRepository.findById(familiaId));
@@ -133,6 +143,26 @@ public class FamiliaService {
             familiaContempladaRepository.save(familiaContemplada);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public ResponseEntity<Page> buscarFamiliasContempladas(int numeroPagina, int tamanhoPagina) {
+        Pageable pageable;
+
+        try {
+            pageable = PageRequest.of(numeroPagina, tamanhoPagina);
+            Page<FamiliaContempladaDTO> pagina = familiaContempladaRepository.buscarFamiliasContempladasPorPagina(pageable);
+
+//            Page<FamiliaContempladaDTO> paginaPronta = new PageImpl<>(
+//                    pagina.getContent().stream()
+//                            .map(familiaContemplada -> this.transformarFamiliaContempladaEmDTO(familiaContemplada)).collect(Collectors.toList()),
+//                    pageable, pagina.getTotalElements()
+//            );
+
+            return new ResponseEntity<>(pagina, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
-    @Query("SELECT new com.digix.desafio.dto.PessoaDTO(p, DATEDIFF('year' , now(), p.dataDeNascimento)) FROM Pessoa p "
+    @Query("SELECT new com.digix.desafio.dto.PessoaDTO(p) FROM Pessoa p "
             + "JOIN FamiliaPessoa fp ON fp.pessoaId.id = p.id "
             + "WHERE fp.familiaId.id = ?1 ")
     List<PessoaDTO> buscarPessoasPorFamiliaId(Integer familiaId);

@@ -23,6 +23,7 @@ public class FamiliaDTO implements Comparator<FamiliaDTO> {
     public FamiliaDTO(Familia familia) {
         this.id = familia.getId();
         this.status = familia.getStatusId().getId();
+        this.pontos = 0;
     }
 
     public Integer getId() {
@@ -67,7 +68,7 @@ public class FamiliaDTO implements Comparator<FamiliaDTO> {
 
     @Override
     public int compare(FamiliaDTO o1, FamiliaDTO o2) {
-        return o1.getPontos().compareTo(o2.getPontos());
+        return o2.getPontos().compareTo(o1.getPontos());
     }
 
 }

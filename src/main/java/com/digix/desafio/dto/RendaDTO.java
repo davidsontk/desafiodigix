@@ -11,6 +11,10 @@ public class RendaDTO {
     private Integer pessoaId;
     private int renda;
 
+    public RendaDTO() {
+
+    }
+
     public RendaDTO(Renda renda) {
         this.pessoaId = renda.getPessoaId().getId();
         this.renda = renda.getRenda();
