@@ -13,6 +13,7 @@ import com.digix.desafio.repository.FamiliaRepository;
 import com.digix.desafio.repository.PessoaRepository;
 import com.digix.desafio.repository.StatusRepository;
 import com.digix.desafio.repository.TipoRepository;
+import com.digix.desafio.utils.Dependente;
 import com.digix.desafio.utils.StatusEnum;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -87,7 +88,12 @@ public class FamiliaService {
                 familiaDTO.setPessoas(pessoasDTO);
 
                 for (PessoaDTO pessoa : pessoasDTO) {
-                    listaRenda.add(rendaService.buscarRendaPorPessoa(pessoa.getId()));
+                    if (!pessoa.getTipo().equals(Dependente.DEPENDENTE)) {
+                        RendaDTO rendaDTO = rendaService.buscarRendaPorPessoa(pessoa.getId());
+                        if (rendaDTO != null) {
+                            listaRenda.add(rendaDTO);
+                        }
+                    }
                 }
 
                 familiaDTO.setRendas(listaRenda);
@@ -158,7 +164,6 @@ public class FamiliaService {
 //                            .map(familiaContemplada -> this.transformarFamiliaContempladaEmDTO(familiaContemplada)).collect(Collectors.toList()),
 //                    pageable, pagina.getTotalElements()
 //            );
-
             return new ResponseEntity<>(pagina, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

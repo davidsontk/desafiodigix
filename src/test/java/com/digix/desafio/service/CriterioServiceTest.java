@@ -139,7 +139,7 @@ public class CriterioServiceTest {
         PessoaDTO p3 = new PessoaDTO();
         p3.setDataDeNascimento("20/05/2007");
         p3.setId(3);
-        p3.setIdade(13);
+        p3.setIdade(12);
         p3.setNome("Filho");
         p3.setTipo("Dependente");
         listaPessoas.add(p3);

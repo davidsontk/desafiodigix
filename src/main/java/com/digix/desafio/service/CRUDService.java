@@ -110,6 +110,13 @@ public class CRUDService {
             p4.setDataDeNascimento(converteStringParaData("29/03/1992"));
             pessoaRepository.save(p4);
 
+            Pessoa p5 = new Pessoa();
+            p5.setId(5);
+            p5.setNome("Davi Filho");
+            p5.setTipoId(tipo3);
+            p5.setDataDeNascimento(converteStringParaData("20/05/2007"));
+            pessoaRepository.save(p5);
+
             Renda renda1 = new Renda();
             renda1.setId(1);
             renda1.setPessoaId(p1);
@@ -177,6 +184,12 @@ public class CRUDService {
             fp4.setFamiliaId(f4);
             fp4.setPessoaId(p4);
             familiaPessoaRepository.save(fp4);
+            
+            FamiliaPessoa fp5 = new FamiliaPessoa();
+            fp5.setId(5);
+            fp5.setFamiliaId(f1);
+            fp5.setPessoaId(p5);
+            familiaPessoaRepository.save(fp5);
 
             return HttpStatus.OK;
 

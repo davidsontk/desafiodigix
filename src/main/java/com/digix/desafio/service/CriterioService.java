@@ -20,7 +20,7 @@ public class CriterioService {
     public FamiliaDTO verificarCriterioRendaTotalFamilia(FamiliaDTO familiaDTO) {
         try {
             List<RendaDTO> listaRendas = familiaDTO.getRendas();
-            int rendaTotal = 0;
+            Integer rendaTotal = 0;
 
             for (RendaDTO renda : listaRendas) {
                 rendaTotal += renda.getRenda();
