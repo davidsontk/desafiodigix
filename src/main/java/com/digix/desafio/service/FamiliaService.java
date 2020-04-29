@@ -159,11 +159,6 @@ public class FamiliaService {
             pageable = PageRequest.of(numeroPagina, tamanhoPagina);
             Page<FamiliaContempladaDTO> pagina = familiaContempladaRepository.buscarFamiliasContempladasPorPagina(pageable);
 
-//            Page<FamiliaContempladaDTO> paginaPronta = new PageImpl<>(
-//                    pagina.getContent().stream()
-//                            .map(familiaContemplada -> this.transformarFamiliaContempladaEmDTO(familiaContemplada)).collect(Collectors.toList()),
-//                    pageable, pagina.getTotalElements()
-//            );
             return new ResponseEntity<>(pagina, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
