@@ -78,7 +78,7 @@ public class CriterioServiceTest {
         PessoaDTO p1 = new PessoaDTO();
         p1.setDataDeNascimento("20/07/1989");
         p1.setId(1);
-        p1.setIdade(31);
+        p1.setIdade(30);
         p1.setNome("Joao");
         p1.setTipo("Pretendente");
         listaPessoas.add(p1);
@@ -86,7 +86,7 @@ public class CriterioServiceTest {
         PessoaDTO p2 = new PessoaDTO();
         p2.setDataDeNascimento("10/05/1990");
         p2.setId(2);
-        p2.setIdade(30);
+        p2.setIdade(29);
         p2.setNome("Maria");
         p2.setTipo("Cônjuge");
         listaPessoas.add(p2);
@@ -94,7 +94,7 @@ public class CriterioServiceTest {
         PessoaDTO p3 = new PessoaDTO();
         p3.setDataDeNascimento("20/05/2007");
         p3.setId(3);
-        p3.setIdade(13);
+        p3.setIdade(12);
         p3.setNome("Filho");
         p3.setTipo("Dependente");
         listaPessoas.add(p3);

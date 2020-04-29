@@ -14,7 +14,6 @@ import com.digix.desafio.repository.StatusRepository;
 import com.digix.desafio.repository.TipoRepository;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -132,7 +131,7 @@ public class CRUDService {
             Renda renda3 = new Renda();
             renda3.setId(3);
             renda3.setPessoaId(p3);
-            renda3.setRenda(1100);
+            renda3.setRenda(2000);
             rendaRepository.save(renda3);
 
             Renda renda4 = new Renda();

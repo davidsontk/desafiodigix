@@ -1,6 +1,5 @@
 package com.digix.desafio.service;
 
-import com.digix.desafio.StarterApplication;
 import com.digix.desafio.dto.FamiliaContempladaDTO;
 import com.digix.desafio.dto.FamiliaDTO;
 import com.digix.desafio.dto.PessoaDTO;
@@ -10,24 +9,18 @@ import com.digix.desafio.model.Status;
 import com.digix.desafio.repository.FamiliaContempladaRepository;
 import com.digix.desafio.repository.FamiliaPessoaRepository;
 import com.digix.desafio.repository.FamiliaRepository;
-import com.digix.desafio.repository.PessoaRepository;
 import com.digix.desafio.repository.StatusRepository;
 import com.digix.desafio.repository.TipoRepository;
 import com.digix.desafio.utils.Dependente;
 import com.digix.desafio.utils.StatusEnum;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -166,4 +159,4 @@ public class FamiliaService {
         }
     }
 
-}
+        }

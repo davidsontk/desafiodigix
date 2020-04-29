@@ -1,8 +1,6 @@
 package com.digix.desafio.service;
 
-import com.digix.desafio.dto.FamiliaDTO;
 import com.digix.desafio.dto.PessoaDTO;
-import com.digix.desafio.repository.FamiliaPessoaRepository;
 import com.digix.desafio.repository.PessoaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
